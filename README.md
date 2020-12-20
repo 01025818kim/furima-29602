@@ -27,44 +27,44 @@ Things you may want to cover:
 
 ## users テーブル
 
-| COlumn         | Type   | Options     |
-| -------------- | ------ | ----------- |
-| first_name     | string | null: false |
-| last_name      | string | null: false |
-| nick_name      | string | null: false |
-| email          | string | null: false |
-| password       | string | null: false |
-| birthday_year  | string | null: false |
-| birthday_month | string | null: false |
-| birthday_date  | string | null: false |
+| COlumn             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| first_name         | string | null: false |
+| last_name          | string | null: false |
+| first_hurigana     | string | null: false |
+| last_hurigana      | string | null: false |
+| nick_name          | string | null: false |
+| email              | string | null: false |
+| encrypted_password | string | null: false |
+| birthday           | date   | null: false |
 
 ### Association
-- has_many :item
+- has_many :items
 - has_many :buys
 
 ## items テーブル
 
-| Column          | Type       | Options                        |
-| --------------- | --------   | ------------------------------ |
-| user_ID         | references | null: false, foreign_key: true |
-| item_name       | string     | null: false                    |
-| category        | string     | null: false                    |
-| state           | string     | null: false                    |
-| delivery_fee    | string     | null: false                    |
-| shipment_source | string     | null: false                    |
-| shipment_date   | string     | null: false                    |
-| comment         | string     | null: false                    |
+| Column             | Type       | Options                        |
+| ------------------ | --------   | ------------------------------ |
+| user               | references | null: false, foreign_key: true |
+| item_name          | integer    | null: false                    |
+| category_id        | integer    | null: false                    |
+| state_id           | integer    | null: false                    |
+| delivery_fee_id    | integer    | null: false                    |
+| shipment_source_id | integer    | null: false                    |
+| shipment_date_id   | integer    | null: false                    |
+| comment            | string     | null: false                    |
 
 ### Association
-- belongth_to :user
+- belongs_to :user
 - has_one :buys
 
 ## buys テーブル
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
-| user_ID | references | null: false, foreign_key: ture |
-| item_ID | references | null: false, foreign_key: ture |
+| user    | references | null: false, foreign_key: ture |
+| item    | references | null: false, foreign_key: ture |
 
 ### Association
 - belongs_to :user
@@ -75,14 +75,11 @@ Things you may want to cover:
 
 | Column           | Type   | Options     |
 | ---------------- | ------ | ----------- |
-| card_information | string | null: false |
-| expiration_date  | string | null: false |
-| security_code    | string | null: false |
 | postal_code      | string | null: false |
 | prefectures      | string | null: false |
 | municipality     | string | null: false |
 | address_number   | string | null: false |
-| building_name    | string | null: false |
+| building_name    | string |             |
 | phone_number     | string | null: false |
 
 ### Association
