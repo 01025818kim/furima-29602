@@ -27,16 +27,16 @@ Things you may want to cover:
 
 ## users テーブル
 
-| COlumn             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| first_name         | string | null: false |
-| last_name          | string | null: false |
-| first_hurigana     | string | null: false |
-| last_hurigana      | string | null: false |
-| nick_name          | string | null: false |
-| email              | string | null: false |
-| encrypted_password | string | null: false |
-| birthday           | date   | null: false |
+| COlumn             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| first_name         | string | null: false               |
+| last_name          | string | null: false               |
+| first_hurigana     | string | null: false               |
+| last_hurigana      | string | null: false               |
+| nick_name          | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| birthday           | date   | null: false               |
 
 ### Association
 - has_many :items
@@ -47,17 +47,18 @@ Things you may want to cover:
 | Column             | Type       | Options                        |
 | ------------------ | --------   | ------------------------------ |
 | user               | references | null: false, foreign_key: true |
-| item_name          | integer    | null: false                    |
+| name               | integer    | null: false                    |
+| price              | string     | null: false                    |
 | category_id        | integer    | null: false                    |
 | state_id           | integer    | null: false                    |
 | delivery_fee_id    | integer    | null: false                    |
-| shipment_source_id | integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
 | shipment_date_id   | integer    | null: false                    |
-| comment            | string     | null: false                    |
+| comment            | text       | null: false                    |
 
 ### Association
 - belongs_to :user
-- has_one :buys
+- has_one :buy
 
 ## buys テーブル
 
@@ -73,14 +74,15 @@ Things you may want to cover:
 
 ## address テーブル
 
-| Column           | Type   | Options     |
-| ---------------- | ------ | ----------- |
-| postal_code      | string | null: false |
-| prefectures      | string | null: false |
-| municipality     | string | null: false |
-| address_number   | string | null: false |
-| building_name    | string |             |
-| phone_number     | string | null: false |
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| buy              | references | null: false, foreign_key: ture |
+| postal_code      | string     | null: false                    |
+| prefecture_id    | integer    | null: false                    |
+| municipality     | string     | null: false                    |
+| address_number   | string     | null: false                    |
+| building_name    | string     |                                |
+| phone_number     | string     | null: false                    |
 
 ### Association
 - belongs_to :buy
