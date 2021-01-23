@@ -27,50 +27,25 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Comment can't be blank")
       end
-      it "categoryを選択しないと商品は保存できない" do
-        @item.category_id = ""
-        @item.valid?
-        expect(@item.errors.full_messages).to include("Category can't be blank")
-      end
       it "categoryの選択が0の場合に商品は保存できない" do
         @item.category_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include("Category must be other than 0")
-      end
-      it "stateを選択しないと商品は保存できない" do
-        @item.state_id = ""
-        @item.valid?
-        expect(@item.errors.full_messages).to include("State can't be blank")
       end
       it "stateの選択が0の場合に商品は保存できない" do
         @item.state_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include("State must be other than 0")
       end
-      it "delivery_feeを選択しないと商品は保存できない" do
-        @item.delivery_fee_id = ""
-        @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery fee can't be blank")
-      end
       it "delivery_feeの選択が0の場合に商品は保存できない" do
         @item.delivery_fee_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery fee must be other than 0")
       end
-      it "prefectureを選択しないと商品は保存できない" do
-        @item.prefecture_id = ""
-        @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
-      end
       it "prefectureの選択が0の場合に商品は保存できない" do
         @item.prefecture_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture must be other than 0")
-      end
-      it "shipmentを選択しないと商品は保存できない" do
-        @item.shipment_id = ""
-        @item.valid?
-        expect(@item.errors.full_messages).to include("Shipment can't be blank")
       end
       it "shipmentの選択が0の場合に商品は保存できない" do
         @item.shipment_id = 0
@@ -83,7 +58,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it "priceは全角数字では商品は保存できない" do
-        @item.price = ３００
+        @item.price = "３００"
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
       end
