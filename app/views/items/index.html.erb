@@ -164,7 +164,6 @@
         <%= link_to '#' do %>
         <% if @items.length == 0 %>
         <%= image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", class: "item-img" %>
-        <% end %>
         <div class='item-info'>
           <h3 class='item-name'>
             商品を出品してね！
@@ -177,6 +176,7 @@
             </div>
           </div>
         </div>
+        <% end %>
         <% end %>
       </li>
       <%# //商品がある場合は表示されないようにしましょう %>
