@@ -1,7 +1,5 @@
 FactoryBot.define do
   factory :user_buy do
-    user_id { 3 }
-    item_id { 3 } 
     token { 'sample' }
     postal_code { '123-4567' }
     prefecture_id { 2 }

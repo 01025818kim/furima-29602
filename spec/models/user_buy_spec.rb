@@ -2,11 +2,18 @@ require 'rails_helper'
 
 RSpec.describe UserBuy, type: :model do
   before do
-    @user_buy = FactoryBot.build(:user_buy)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item)
+    @user_buy = FactoryBot.build(:user_buy, user_id: @user.id, item_id: @item.id)
+    sleep 0.1
   end
   describe '商品の購入' do
     context "商品が購入できる場合" do
       it 'すべての値が正しく入力されていれば保存できること' do
+        expect(@user_buy).to be_valid
+      end
+      it 'building_nameは空でも保存できること' do
+        @user_buy.building_name = ""
         expect(@user_buy).to be_valid
       end
     end
@@ -41,10 +48,6 @@ RSpec.describe UserBuy, type: :model do
         @user_buy.valid?
         expect(@user_buy.errors.full_messages).to include("Address number can't be blank")
       end
-      it 'building_nameは空でも保存できること' do
-        @user_buy.building_name = ""
-        expect(@user_buy).to be_valid
-      end
       it 'phone_numberが空だと保存できないこと' do
         @user_buy.phone_number = ""
         @user_buy.valid?
@@ -54,6 +57,11 @@ RSpec.describe UserBuy, type: :model do
         @user_buy.phone_number = "111111111111"
         @user_buy.valid?
         expect(@user_buy.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+      end
+      it 'phone_numberは数字のみでないと保存できないこと' do
+        @user_buy.phone_number = "aaaaaaa33"
+        @user_buy.valid?
+        expect(@user_buy.errors.full_messages).to include("Phone number is invalid")
       end
       it 'user_idが空だと保存できないこと' do
         @user_buy.user_id = ""
