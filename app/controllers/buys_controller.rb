@@ -6,6 +6,7 @@ class BuysController < ApplicationController
     @user_buy = UserBuy.new
     if current_user == @item.user || @item.buy.present?
       redirect_to root_path
+    end
   end
 
   def create
