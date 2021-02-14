@@ -15,8 +15,6 @@ const pay = () => {
     };
 
     Payjp.createToken(card, (status, response) => {
-      // debugger
-      console.log(response)
       if (status == 200) {
         const token = response.id;
         const renderDom = document.getElementById("charge-form");
